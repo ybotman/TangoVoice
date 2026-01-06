@@ -2,7 +2,7 @@
 
 ## What is TangoVoice?
 
-A Custom GPT that helps dancers find tango events by querying the TangoTiempo calendar API via natural language.
+A Custom GPT that helps find Argentine tango events by querying the TangoTiempo calendar API via natural language.
 
 **Example queries:**
 - "What milongas are this weekend?"
@@ -36,7 +36,7 @@ A Custom GPT that helps dancers find tango events by querying the TangoTiempo ca
 
 In the **Create** tab:
 - **Name**: `TangoVoice`
-- **Description**: `Find tango events near you - milongas, practicas, classes, and festivals. Ask about tonight, this week, or search by venue and organizer.`
+- **Description** (under 300 chars): `Find Argentine tango events - milongas, practicas, classes, festivals. Ask what's tonight, this week, or by venue.`
 - **Instructions**: Copy/paste entire contents of `system-instructions.txt`
 
 ### Step 3: Add the API Action

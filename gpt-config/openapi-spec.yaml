@@ -1,9 +1,9 @@
 openapi: 3.1.0
 info:
-  title: TangoVoice - Dance Event Calendar API
+  title: TangoVoice - Argentine Tango Event Calendar API
   description: |
-    API for querying tango and dance events, venues, organizers, and categories.
-    This powers the TangoVoice GPT to help dancers find events.
+    API for querying Argentine tango events, venues, and organizers.
+    Powers TangoVoice GPT to help find milongas, practicas, and classes.
   version: 1.0.0
 
 servers:
@@ -14,9 +14,9 @@ paths:
   /events:
     get:
       operationId: searchEvents
-      summary: Search and list dance events
+      summary: Search and list tango events
       description: |
-        Returns dance events filtered by date, category, venue, organizer, or text search.
+        Returns Argentine tango events filtered by date, category, venue, organizer, or text search.
         Use this for questions like "What milongas are this weekend?" or "Is Tango Spark tonight?"
 
         IMPORTANT: Always include start and end for date-based queries.
@@ -161,7 +161,7 @@ paths:
     get:
       operationId: listVenues
       summary: List all venues
-      description: Returns dance venues with location and contact information. Use to find where events take place.
+      description: Returns tango venues with location and contact information. Use to find where events take place.
       parameters:
         - name: masteredCityId
           in: query
