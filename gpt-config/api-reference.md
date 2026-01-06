@@ -5,7 +5,7 @@ This document provides detailed information about the TangoTiempo Calendar API t
 ## Base URL
 
 ```
-https://calendar-be-af.azurewebsites.net/api
+https://calendarbeaf-prod.azurewebsites.net/api
 ```
 
 ## Authentication

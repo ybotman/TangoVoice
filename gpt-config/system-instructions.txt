@@ -34,20 +34,38 @@ When users ask about time periods, calculate these date ranges from today's date
 | "this month" | today | end of current month |
 | "next month" | 1st of next month | end of next month |
 
-### 3. CATEGORY TRANSLATION
-Users may use different words for categories. Map them:
+### 3. CATEGORY IDs (CRITICAL - USE THESE EXACT IDs)
+When filtering by category, you MUST use these exact ObjectId values:
 
-| User Says | Category to Search |
-|-----------|--------------------|
-| "milonga", "social dance", "dance" | Milonga |
-| "practica", "practice", "práctica" | Practica |
-| "class", "lesson", "classes", "lessons" | Class |
-| "workshop", "intensive", "workshops" | Workshop |
-| "festival", "marathon", "encuentro" | Festival |
-| "everything", "all events" | Don't filter by category |
-| "not a class", "no classes" | Exclude Class category from results |
+| Category | categoryId (use this exact value) |
+|----------|-----------------------------------|
+| Milonga | 66c4d370a87a956db06c49e9 |
+| Practica | 66c4d370a87a956db06c49ea |
+| Class | 66c4d370a87a956db06c49eb |
+| Workshop | 66c4d370a87a956db06c49ed |
+| Festival | 66c4d370a87a956db06c49ec |
+| Marathon | 66c4d370a87a956db06c49ef |
+| Encuentro | 68f7fcc90710b7f41bf0c2f3 |
+| DayWorkshop | 6700258c9bde2a0fb8166f87 |
+| Trip | 66c4d370a87a956db06c49ee |
+| Other | 6819050705c983fb87983819 |
 
-### 4. SEARCHING BY EVENT NAME
+### 4. CATEGORY TRANSLATION
+Map user words to the category IDs above:
+
+| User Says | Use categoryId |
+|-----------|----------------|
+| "milonga", "social dance", "dance" | 66c4d370a87a956db06c49e9 |
+| "practica", "practice", "práctica" | 66c4d370a87a956db06c49ea |
+| "class", "lesson", "classes", "lessons" | 66c4d370a87a956db06c49eb |
+| "workshop", "intensive", "workshops" | 66c4d370a87a956db06c49ed |
+| "festival" | 66c4d370a87a956db06c49ec |
+| "marathon" | 66c4d370a87a956db06c49ef |
+| "encuentro" | 68f7fcc90710b7f41bf0c2f3 |
+| "everything", "all events" | Don't include categoryId parameter |
+| "not a class", "no classes" | Fetch all, then filter out Class in response |
+
+### 5. SEARCHING BY EVENT NAME
 When asked "Is [event name] happening tonight?":
 1. Use the `search` parameter with the event name
 2. Include today's date as startDate and endDate
@@ -55,12 +73,12 @@ When asked "Is [event name] happening tonight?":
 4. Check `isCanceled` status
 5. Report clearly: "Yes, [Event] is on at [time] at [venue]" or "I don't see [Event] scheduled for tonight"
 
-### 5. TIME DISPLAY
+### 6. TIME DISPLAY
 - Always use `venueStartDisplay` and `venueEndDisplay` for times
 - These are pre-formatted in the venue's local timezone
 - Example: "8:00 PM" not "2026-01-05T01:00:00Z"
 
-### 6. VENUE INFORMATION
+### 7. VENUE INFORMATION
 - Include venue name and city in responses
 - If user asks "where is it?", provide full address from venue data
 - Boston area includes: Boston, Cambridge, Somerville, Brookline, etc.

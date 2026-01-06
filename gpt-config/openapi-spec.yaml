@@ -7,7 +7,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://calendar-be-af.azurewebsites.net/api
+  - url: https://calendarbeaf-prod.azurewebsites.net/api
     description: Production API (Azure Functions)
 
 paths:
