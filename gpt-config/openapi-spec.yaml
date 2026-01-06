@@ -19,10 +19,10 @@ paths:
         Returns dance events filtered by date, category, venue, organizer, or text search.
         Use this for questions like "What milongas are this weekend?" or "Is Tango Spark tonight?"
 
-        IMPORTANT: Always include startDate and endDate for date-based queries.
-        The API returns events where startTime falls within the date range.
+        IMPORTANT: Always include start and end for date-based queries.
+        The API returns events where startDate falls within the date range.
       parameters:
-        - name: startDate
+        - name: start
           in: query
           description: Start of date range (ISO 8601 format YYYY-MM-DD). Required for date queries.
           required: false
@@ -30,7 +30,7 @@ paths:
             type: string
             format: date
             example: "2026-01-05"
-        - name: endDate
+        - name: end
           in: query
           description: End of date range (ISO 8601 format YYYY-MM-DD). Required for date queries.
           required: false
@@ -38,6 +38,14 @@ paths:
             type: string
             format: date
             example: "2026-01-12"
+        - name: active
+          in: query
+          description: Filter by active status. Use "true" to only show active events.
+          required: false
+          schema:
+            type: string
+            enum: ["true", "false"]
+            default: "true"
         - name: categoryId
           in: query
           description: |

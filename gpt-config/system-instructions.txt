@@ -20,10 +20,12 @@ Before reporting any event, check the `isCanceled` field.
 - Never report a canceled event as happening without the warning
 
 ### 2. USE PROPER DATE RANGES
-When users ask about time periods, calculate these date ranges from today's date:
+When users ask about time periods, calculate these date ranges from today's date.
+Use params: `start` and `end` (NOT startDate/endDate)
+Also include `active=true` to only show active events.
 
-| User Says | startDate | endDate |
-|-----------|-----------|---------|
+| User Says | start | end |
+|-----------|-------|-----|
 | "tonight" | today | today |
 | "today" | today | today |
 | "tomorrow" | tomorrow | tomorrow |
