@@ -40,10 +40,26 @@ paths:
             example: "2026-01-12"
         - name: categoryId
           in: query
-          description: Filter by event category ObjectId
+          description: |
+            Filter by event category. Use these EXACT ObjectId values:
+            - 66c4d370a87a956db06c49e9 = Milonga (social dance)
+            - 66c4d370a87a956db06c49ea = Practica (practice session)
+            - 66c4d370a87a956db06c49eb = Class (lesson)
+            - 66c4d370a87a956db06c49ed = Workshop
+            - 66c4d370a87a956db06c49ec = Festival
+            - 66c4d370a87a956db06c49ef = Marathon
+            - 68f7fcc90710b7f41bf0c2f3 = Encuentro
           required: false
           schema:
             type: string
+            enum:
+              - "66c4d370a87a956db06c49e9"
+              - "66c4d370a87a956db06c49ea"
+              - "66c4d370a87a956db06c49eb"
+              - "66c4d370a87a956db06c49ed"
+              - "66c4d370a87a956db06c49ec"
+              - "66c4d370a87a956db06c49ef"
+              - "68f7fcc90710b7f41bf0c2f3"
         - name: venueId
           in: query
           description: Filter by venue ObjectId
