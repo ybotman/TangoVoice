@@ -15,12 +15,7 @@ paths:
     get:
       operationId: searchEvents
       summary: Search and list tango events
-      description: |
-        Returns Argentine tango events filtered by date, category, venue, organizer, or text search.
-        Use this for questions like "What milongas are this weekend?" or "Is Tango Spark tonight?"
-
-        IMPORTANT: Always include start and end for date-based queries.
-        The API returns events where startDate falls within the date range.
+      description: Returns tango events filtered by date, category, venue, or text. Use for "What milongas are this weekend?" Always include start and end params for date queries.
       parameters:
         - name: start
           in: query
