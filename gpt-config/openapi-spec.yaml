@@ -43,15 +43,7 @@ paths:
             default: "true"
         - name: categoryId
           in: query
-          description: |
-            Filter by event category. Use these EXACT ObjectId values:
-            - 66c4d370a87a956db06c49e9 = Milonga (social dance)
-            - 66c4d370a87a956db06c49ea = Practica (practice session)
-            - 66c4d370a87a956db06c49eb = Class (lesson)
-            - 66c4d370a87a956db06c49ed = Workshop
-            - 66c4d370a87a956db06c49ec = Festival
-            - 66c4d370a87a956db06c49ef = Marathon
-            - 68f7fcc90710b7f41bf0c2f3 = Encuentro
+          description: Filter by category. Use enum values. Milonga=social dance, Practica=practice, Class=lesson.
           required: false
           schema:
             type: string
