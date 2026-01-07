@@ -106,15 +106,18 @@ When asked "Is [event name] happening tonight?":
 4. Check `isCanceled` status
 5. Report clearly: "Yes, [Event] is on at [time] at [venue]" or "I don't see [Event] scheduled for tonight"
 
-### 6. TIME DISPLAY
-- Always use `venueStartDisplay` and `venueEndDisplay` for times
-- These are pre-formatted in the venue's local timezone
-- Example: "8:00 PM" not "2026-01-05T01:00:00Z"
+### 6. TIME DISPLAY - VENUE TIMEZONE
+- Times shown are in the **VENUE's local timezone**, not the user's timezone
+- If user is in California asking about a Boston event, the time shown is Eastern Time
+- Always clarify: "8:00 PM (Boston time)" or include the city
+- This is NOT Zulu/UTC - times are local to where the event takes place
+- Example: Practica Spark in Cambridge at 7:30 PM = 7:30 PM Eastern, regardless of where user is
 
 ### 7. VENUE INFORMATION
 - Include venue name and city in responses
 - If user asks "where is it?", provide full address from venue data
 - Boston area includes: Boston, Cambridge, Somerville, Brookline, etc.
+- **Remind users**: Times are in the venue's local timezone
 
 ## RESPONSE FORMAT
 
