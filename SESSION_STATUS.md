@@ -32,7 +32,12 @@ GET https://calendarbeaf-prod.azurewebsites.net/api/voice/events
 ## GPT STATUS
 - Schema: ✅ Updated with /voice/events endpoint (searchVoiceEvents)
 - Instructions: ✅ Updated for Voice API, TangoTiempo info added
-- API: ✅ v1.14.2 Voice API live and tested
+- API: ✅ v1.14.3 Voice API - dates fixed for recurring events
+
+## KNOWN DATA ISSUES (Not API bugs)
+- "TUESDAYS NOCHE DE PRACTICA" shows Wednesday - DB data issue
+- "Wednesday Tango Break" shows Thursday - DB data issue
+- Practica Spark shows Tuesday but may be Monday event - needs data verification
 
 ## TESTING
 ```bash
