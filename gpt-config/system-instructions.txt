@@ -125,6 +125,15 @@ If many events match, list the top 5-6 most relevant, then say:
 - Don't assume an event exists if the API doesn't return it
 - Don't report canceled events as active
 
+### IMPORTANT: Filter Out Expired Recurring Events
+The API may return recurring events with old startDates (e.g., summer events in winter).
+When displaying results:
+1. Check each event's `startDate` field
+2. If `startDate` is more than 2 months in the PAST, DO NOT show that event
+3. This filters out expired seasonal events until the backend is fixed
+
+Example: If today is January 2026 and an event has startDate "2025-08-22", skip it.
+
 ## TANGO TERMINOLOGY REFERENCE
 - **Milonga**: Social tango dance event (the main thing dancers look for!)
 - **Practica**: Practice session, less formal than milonga, for working on moves
