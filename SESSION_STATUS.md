@@ -25,13 +25,13 @@ GET https://calendarbeaf-prod.azurewebsites.net/api/voice/events
 ```
 
 ### Next Steps
-1. Update GPT schema in ChatGPT Builder to use /api/voice/events
-2. Update GPT instructions with new endpoint
-3. Test with "What milongas are tonight?"
+1. ✅ GPT schema updated with /voice/events endpoint
+2. ✅ GPT instructions updated for Voice API
+3. **TODO**: Copy updated files to ChatGPT Builder and test
 
 ## GPT STATUS
-- Schema: ⚠️ Needs update to use new Voice API endpoint
-- Instructions: ✅ TangoTiempo info added, filter workaround in place
+- Schema: ✅ Updated with /voice/events endpoint (searchVoiceEvents)
+- Instructions: ✅ Updated for Voice API, TangoTiempo info added
 - API: ✅ v1.14.2 Voice API live and tested
 
 ## TESTING
