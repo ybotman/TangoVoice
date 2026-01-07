@@ -1,20 +1,45 @@
 # TangoVoice Session Status
-**Last Updated**: 2026-01-06 23:20 EST
+**Last Updated**: 2026-01-07 07:20 EST
 **Agent**: Cronas (TangoVoice owner)
 
-## CURRENT STATUS: Voice API Complete!
+## CURRENT STATUS: Voice API v1.15.1 Deploying
 
-### Completed This Session
-1. Identified recurring events bug (summer events showing in winter)
-2. Collaborated with Fulton to design dedicated Voice API
-3. **NEW: /api/voice/events endpoint live (v1.14.2)**
-   - Filters expired recurring events automatically
-   - Pre-formatted dates for natural language
-   - Returns summary and isRecurring flag
-4. Added TangoTiempo about section to GPT instructions
-5. Tested and confirmed Voice API working
+### What's Working
+- ✅ Voice API endpoint live at `/api/voice/events`
+- ✅ Category names correct (Milonga, Practica, Class, etc.)
+- ✅ RRULE expansion - recurring events show occurrence dates
+- ✅ Timezone fix - dates now match recurrence patterns
+- ⏳ venueTimezone field - deploying
 
-### Voice API Endpoint
+### Voice API Fields
+| Field | Description |
+|-------|-------------|
+| id | Event ID |
+| title | Event name |
+| category | Milonga/Practica/Class/etc. |
+| dateFormatted | "Tuesday, January 6" |
+| timeFormatted | "7:00 PM" |
+| venueName | Venue name |
+| venueCity | City |
+| venueAddress | Full address |
+| venueTimezone | "America/New_York" (coming) |
+| isRecurring | true/false |
+| isCanceled | true/false |
+| description | Event description |
+
+### GPT Files Ready
+```
+gpt-config/openapi-spec.yaml      - Actions schema
+gpt-config/system-instructions.txt - Instructions (3072 chars)
+```
+
+### Key Instructions
+1. Use ONLY API data - no hallucination
+2. Display dateFormatted/timeFormatted exactly as returned
+3. Times are in venue's local timezone
+4. Check isCanceled and warn user
+
+### Endpoint
 ```
 GET https://calendarbeaf-prod.azurewebsites.net/api/voice/events
   ?appId=1
@@ -24,35 +49,11 @@ GET https://calendarbeaf-prod.azurewebsites.net/api/voice/events
   &limit=20
 ```
 
-### Next Steps
-1. ✅ GPT schema updated with /voice/events endpoint
-2. ✅ GPT instructions updated for Voice API
-3. ✅ Added anti-hallucination rules to prevent GPT inventing events
-4. **TODO**: Copy updated files to ChatGPT Builder and test
-5. **TODO**: Fix data quality issues (Practica Spark day, etc.)
-
-## GPT STATUS
-- Schema: ✅ Updated with /voice/events endpoint (searchVoiceEvents)
-- Instructions: ✅ Updated for Voice API, TangoTiempo info added
-- API: ✅ v1.14.3 Voice API - dates fixed for recurring events
-
-## KNOWN ISSUES
-
-### Timezone Bug (Fulton's domain - BE-AF fix)
-- Voice API showing dates/times in UTC instead of venue local timezone
-- "TUESDAYS NOCHE" shows Wednesday (UTC day shift)
-- Times show 1:00 AM instead of 9:00 PM (UTC vs EST)
-- Message sent to Fulton - awaiting fix
-
-### GPT Instructions Updated
-- Times are in VENUE timezone (not user's timezone)
-- User in California asking about Boston event sees Eastern time
-
-## TESTING
+### Test Commands
 ```bash
-# NEW Voice API (filters expired recurring events):
-curl -s 'https://calendarbeaf-prod.azurewebsites.net/api/voice/events?appId=1&start=2026-01-06&end=2026-01-12&limit=10'
+# Practicas this week
+curl -s 'https://calendarbeaf-prod.azurewebsites.net/api/voice/events?appId=1&start=2026-01-06&end=2026-01-12&categoryId=66c4d370a87a956db06c49ea'
 
-# Test milongas only:
-curl -s 'https://calendarbeaf-prod.azurewebsites.net/api/voice/events?appId=1&start=2026-01-06&end=2026-01-12&categoryId=66c4d370a87a956db06c49e9'
+# All events this week
+curl -s 'https://calendarbeaf-prod.azurewebsites.net/api/voice/events?appId=1&start=2026-01-06&end=2026-01-12&limit=20'
 ```
