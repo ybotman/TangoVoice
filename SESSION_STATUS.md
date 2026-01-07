@@ -36,10 +36,17 @@ GET https://calendarbeaf-prod.azurewebsites.net/api/voice/events
 - Instructions: ✅ Updated for Voice API, TangoTiempo info added
 - API: ✅ v1.14.3 Voice API - dates fixed for recurring events
 
-## KNOWN DATA ISSUES (Not API bugs)
-- "TUESDAYS NOCHE DE PRACTICA" shows Wednesday - DB data issue
-- "Wednesday Tango Break" shows Thursday - DB data issue
-- Practica Spark shows Tuesday but may be Monday event - needs data verification
+## KNOWN ISSUES
+
+### Timezone Bug (Fulton's domain - BE-AF fix)
+- Voice API showing dates/times in UTC instead of venue local timezone
+- "TUESDAYS NOCHE" shows Wednesday (UTC day shift)
+- Times show 1:00 AM instead of 9:00 PM (UTC vs EST)
+- Message sent to Fulton - awaiting fix
+
+### GPT Instructions Updated
+- Times are in VENUE timezone (not user's timezone)
+- User in California asking about Boston event sees Eastern time
 
 ## TESTING
 ```bash
