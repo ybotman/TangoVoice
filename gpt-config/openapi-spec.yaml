@@ -11,11 +11,72 @@ servers:
     description: Production API (Azure Functions)
 
 paths:
+  /voice/events:
+    get:
+      operationId: searchVoiceEvents
+      summary: Search tango events (Voice-optimized)
+      description: |
+        PREFERRED endpoint for TangoVoice GPT. Returns events with pre-formatted dates,
+        filters expired recurring events, and includes summary. Use for all event queries.
+      parameters:
+        - name: appId
+          in: query
+          description: Application ID. Always use "1" for TangoTiempo.
+          required: true
+          schema:
+            type: string
+            default: "1"
+        - name: start
+          in: query
+          description: Start date (YYYY-MM-DD format). Required.
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "2026-01-06"
+        - name: end
+          in: query
+          description: End date (YYYY-MM-DD format). Required.
+          required: true
+          schema:
+            type: string
+            format: date
+            example: "2026-01-12"
+        - name: categoryId
+          in: query
+          description: Filter by category. Milonga=social, Practica=practice, Class=lesson.
+          required: false
+          schema:
+            type: string
+            enum:
+              - "66c4d370a87a956db06c49e9"
+              - "66c4d370a87a956db06c49ea"
+              - "66c4d370a87a956db06c49eb"
+              - "66c4d370a87a956db06c49ed"
+              - "66c4d370a87a956db06c49ec"
+              - "66c4d370a87a956db06c49ef"
+              - "68f7fcc90710b7f41bf0c2f3"
+        - name: limit
+          in: query
+          description: Max events to return (default 20, max 50)
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 50
+      responses:
+        '200':
+          description: Voice-optimized event list with summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceEventResponse'
+
   /events:
     get:
       operationId: searchEvents
-      summary: Search and list tango events
-      description: Returns tango events filtered by date, category, venue, or text. Use for "What milongas are this weekend?" Always include start and end params for date queries.
+      summary: Search events (legacy)
+      description: Legacy endpoint. Use /voice/events instead for better GPT responses.
       parameters:
         - name: start
           in: query
@@ -405,3 +466,56 @@ components:
           description: Category name (Milonga, Practica, Class, Workshop, Festival, Special Event)
         description:
           type: string
+
+    VoiceEventResponse:
+      type: object
+      description: Voice-optimized response with pre-formatted dates
+      properties:
+        summary:
+          type: string
+          description: Human-readable summary (e.g., "Found 6 milongas.")
+        count:
+          type: integer
+          description: Number of events returned
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoiceEvent'
+
+    VoiceEvent:
+      type: object
+      description: Event with pre-formatted fields for natural language
+      properties:
+        id:
+          type: string
+          description: Event ObjectId
+        title:
+          type: string
+          description: Event name
+        category:
+          type: string
+          description: Category name (Milonga, Practica, Class, etc.)
+        dateFormatted:
+          type: string
+          description: Pre-formatted date (e.g., "Friday, January 10")
+        timeFormatted:
+          type: string
+          description: Pre-formatted time (e.g., "8:00 PM - 11:30 PM")
+        venueName:
+          type: string
+          description: Venue name
+        venueCity:
+          type: string
+          description: City name
+        venueAddress:
+          type: string
+          description: Full venue address
+        isRecurring:
+          type: boolean
+          description: Whether this is a recurring event
+        isCanceled:
+          type: boolean
+          description: TRUE if canceled - always check and inform user
+        description:
+          type: string
+          description: Brief event description
