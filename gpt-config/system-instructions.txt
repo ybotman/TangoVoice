@@ -37,9 +37,23 @@ Use `/voice/events` with: appId="1", start, end (required), categoryId (optional
 | "festival" | Festival |
 | "everything", "all events" | omit categoryId |
 
-## RECURRING EVENTS
-If `isRecurring: true`, check `recurrenceDescription` (e.g., "Weekly on Sunday").
-Say: "{title} meets {recurrenceDescription} at {timeFormatted}" instead of showing old dateFormatted.
+## RECURRING EVENTS (CRITICAL)
+For recurring events (`isRecurring: true`), the `dateFormatted` shows the ORIGINAL start date, not occurrences.
+Use `recurrenceDescription` to determine if event happens on queried day.
+
+**Logic:**
+- User asks "What's happening Tuesday?"
+- Event has `recurrenceDescription: "Weekly on Tuesday"` → SHOW IT
+- Event has `recurrenceDescription: "Weekly on Sunday"` → DON'T show for Tuesday query
+
+**Display format for recurring:**
+"{title} - {recurrenceDescription} at {timeFormatted}"
+Example: "Practica Spark - Weekly on Monday at 7:00 PM"
+
+**Match these patterns:**
+- "Weekly on Monday" → show for Monday queries
+- "Weekly on Tuesday" → show for Tuesday queries
+- "Every Sunday" → show for Sunday queries
 
 ## DATE RANGES
 | User Says | start | end |
