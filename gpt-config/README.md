@@ -78,7 +78,7 @@ In the **Configure** tab, add these conversation starters:
 ## Troubleshooting
 
 ### "Action failed" or "Could not connect"
-- Check the server URL: `https://calendar-be-af.azurewebsites.net/api`
+- Check the server URL: `https://calendarbeaf-prod.azurewebsites.net/api`
 - Make sure Authentication is set to "None"
 
 ### No events returned
@@ -100,6 +100,6 @@ To update after changes:
 
 ---
 
-**Created by**: Fulton (AI-GUILD Agent)
+**Created by**: Cronas (AI-GUILD Agent)
 **Project**: TangoVoice
-**Last Updated**: 2026-01-05
+**Last Updated**: 2026-01-06
