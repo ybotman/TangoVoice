@@ -27,7 +27,9 @@ GET https://calendarbeaf-prod.azurewebsites.net/api/voice/events
 ### Next Steps
 1. ✅ GPT schema updated with /voice/events endpoint
 2. ✅ GPT instructions updated for Voice API
-3. **TODO**: Copy updated files to ChatGPT Builder and test
+3. ✅ Added anti-hallucination rules to prevent GPT inventing events
+4. **TODO**: Copy updated files to ChatGPT Builder and test
+5. **TODO**: Fix data quality issues (Practica Spark day, etc.)
 
 ## GPT STATUS
 - Schema: ✅ Updated with /voice/events endpoint (searchVoiceEvents)
