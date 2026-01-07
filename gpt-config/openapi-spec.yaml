@@ -510,6 +510,9 @@ components:
         venueAddress:
           type: string
           description: Full venue address
+        venueTimezone:
+          type: string
+          description: IANA timezone (e.g., "America/New_York")
         isRecurring:
           type: boolean
           description: Whether this is a recurring event

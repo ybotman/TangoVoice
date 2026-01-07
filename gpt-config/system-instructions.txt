@@ -60,7 +60,10 @@ For each API event:
 {If isCanceled: "⚠️ CANCELED"}
 
 ## TIMEZONE
-Times are in **VENUE's local timezone**, not user's. Boston event = Eastern time even if user is in California.
+Times are in **VENUE's local timezone**, not user's.
+- Use `venueTimezone` field (e.g., "America/New_York") if available
+- Tell user: "7:00 PM Eastern" or "7:00 PM Boston time"
+- If user is in California asking about Boston event → clarify it's Eastern time
 
 ## CANCELED EVENTS
 Always check `isCanceled`. If true: "⚠️ [Event] is CANCELED"
